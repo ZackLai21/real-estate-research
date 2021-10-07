@@ -1,0 +1,46 @@
+  /* AQI Classes */
+.low-risk {
+    background-color: green;
+  }
+  .medium-risk {
+    color: yellow;
+  }
+  .high-risk {
+    color: orange;
+  }
+  .extreme-risk {
+    color: red;
+  }
+
+  /* Commute Classes */
+  .short-commute{
+    background-color: green;
+  }
+  .medium-commute {
+    color: yellow;
+  }
+  .long-commute {
+    color: orange;
+  }
+  .extreme-commute {
+    color: red;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+
+  .row {
+    border: hotpink 2px dotted;
+  }
+
+  .col {
+    border: greenyellow 2px dotted;
+  }
+  
+  #search-history {
+      border:indigo 2px solid;
+  }
+
+  

@@ -1,0 +1,31 @@
+TODOS
+* - low priority
+** - medium priorty
+*** - high priority
+
+ITEMS RELATED TO AIR QUALITY INDEX
+***get the AQI average
+***add AQI colors (written already by Conor)
+*get worst AQI in past year
+
+ITEMS RELATED TO SEARCH HISTORY
+***items are not clearing out before new items are added
+*show the county name on the button along with zip code
+***write funtion for buttons to initiate search
+**limit the number of items in the search history
+
+ITEMS REALTED TO COMMUTE
+*** come up with color code system for the commute and use the same function that that we are using for the AQI color coding.
+
+ITEMS RELATED TO ZIP CODE SEARCH
+***add function to display message "no such zip code" for if the zip code does not exist.
+
+OTHER
+***finish styling/css
+**add spinner for slower search results
+
+POTENTIAL ADD-ONS IF TIME PERMITS
+*nearest national park
+*nearest wilderness area
+*nearest airport
+*number of flights per day from nearest airport
