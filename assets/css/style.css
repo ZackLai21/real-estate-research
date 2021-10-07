@@ -1,0 +1,24 @@
+.low-risk {
+    color: green;
+  }
+  .medium-risk {
+    color: yellow;
+  }
+  .high-risk {
+    color: orange;
+  }
+  .extreme-risk {
+    color: red;
+  }
+/* 
+  .row {
+      border: hotpink 2px solid;
+  }
+
+  .col {
+      border: greenyellow 2px solid;
+  } */
+
+  #search-history {
+      border:indigo, 2px solid;
+  }

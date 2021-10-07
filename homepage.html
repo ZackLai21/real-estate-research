@@ -4,21 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Real Estate Research</title>
     
 </head>
 <body>
 
+     <div class="row" id="main-display">
+        <div class="search-history col s4" id="search-history">
+            <div class="col s6">
+                <form id='zipcodeForm'>
+                <h1>Search</h1>
+                    <label class="w3-text-blue"><b style="font-size: x-large;">Zip Code:</b></label>
+                    <input class="w3-input w3-border w3-jumbo" id="zip" type="text">
+                    <button class="w3-btn w3-blue w3-jumbo w3-margin-top" id="formButton">Search</button>
+                </form>
+                <div class="search-history col s6" id="search-history"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="commute-results col s6" id="commute-results"></div>
+            <div class="AQI-results col s6" id="AQI-results"></div>
+        </div>
+    </div>
 
-    <form class="w3-container w3-display-middle" id='zipcodeForm'>
-            <h1>Real Estate Research Tool</h1>
-            <label class="w3-text-blue"><b style="font-size: x-large;">Zip Code:</b></label>
-            <input class="w3-input w3-border w3-jumbo" id="zipcodeInput" type="text">
-            <button class="w3-btn w3-blue w3-jumbo w3-margin-top">Search</button>
-        </div>  
-    </form>
+
+  
 
     
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script language="javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyABei7qsaJawM-o0ibN05LmcjU3ge6MUhc"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
