@@ -1,12 +1,9 @@
+var zipCodeForm = document.querySelector("#zipcodeForm");
 var searchHistoryContainer = $("#search-history");
 var searchHistory = [];
-
 var county = "Multnomah County";
 var state = "Oregon";
 
-var zipCodeForm = document.querySelector("#zipcodeForm");
-var zipCodeForm1 = document.querySelector("#zipcodeForm1");
-var formButton = document.querySelector("#formButton");
 
 var states = [
   ["Alabama", "01", "AL"],
@@ -123,6 +120,9 @@ function displayCommuteResults(commute, countyAndState) {
   resultCounty.textContent = countyAndState;
   resultAverageCommute.textContent = commute;
   commuteResultEl.innerHTML = "";
+  if (commute < 20) {
+    commuteResultEl.classList.add("short-commute")
+  }
   commuteResultEl.appendChild(resultCounty);
   commuteResultEl.appendChild(resultAverageCommute);
 }
@@ -177,7 +177,15 @@ function displayAQI(aqi) {
   var AQI = aqi.AQI;
   var AQICategoryName = aqi.Category.Name;
   var AQICategoryNumber = aqi.Category.Number;
-
+  if (AQICategoryNumber === 1) {
+    AQIResultEl.classList.add("low-risk");
+  } else if (AQICategoryNumber === 2) {
+    AQIResultEl.classList.add("medium-risk");
+  } else if (AQICategoryNumber === 3) {
+    AQIResultEl.classList.add("high-risk");
+  } else {
+    AQIResultEl.classList.add("extreme-risk");
+  };
   AQIEl.textContent = AQI;
   AQICategoryNameEl.textContent = AQICategoryName;
   AQICategoryNumberEl.textContent = AQICategoryNumber;
@@ -187,10 +195,11 @@ function displayAQI(aqi) {
   AQIResultEl.appendChild(AQICategoryNumberEl);
 }
 
-function initSeachHistory() {
+function initSearchHistory() {
   searchHistory = localStorage.getItem("search-history");
     if (searchHistory) {
       searchHistory = JSON.parse(searchHistory);
+      console.log(searchHistory);
       displayButtons();
     } else {
       searchHistory = [];
@@ -198,7 +207,7 @@ function initSeachHistory() {
 }
 
 function displayButtons() {
-  searchHistoryContainer.innerHTML = "";
+  searchHistoryContainer.empty();
   for (var i = searchHistory.length - 1; i >= 0; i--) {
       var button = $("<button>")
       .attr({
@@ -206,7 +215,6 @@ function displayButtons() {
         class: "btn-search",
       })
       .text(searchHistory[i]);
-    
     searchHistoryContainer.append(button);
   }
 }
@@ -231,4 +239,4 @@ function captureZip(e) {
 zipCodeForm.addEventListener("submit", captureZip);
 
 searchHistoryContainer.innerHTML = "";
-initSeachHistory();
+initSearchHistory();
