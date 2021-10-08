@@ -4,28 +4,27 @@ TODOS
 *** - high priority
 
 ITEMS RELATED TO AIR QUALITY INDEX
-***get the AQI average
-***add AQI colors (written already by Conor)
+*get the AQI average
 *get worst AQI in past year
 
-ITEMS RELATED TO SEARCH HISTORY
-***items are not clearing out before new items are added
-*show the county name on the button along with zip code
-***write funtion for buttons to initiate search
-**limit the number of items in the search history
-
-ITEMS REALTED TO COMMUTE
-*** come up with color code system for the commute and use the same function that that we are using for the AQI color coding.
-
-ITEMS RELATED TO ZIP CODE SEARCH
-***add function to display message "no such zip code" for if the zip code does not exist.
-
-OTHER
-***finish styling/css
+OTHER POTENTIAL FEATURES TO IMPROVE USER EXPERIENCE
 **add spinner for slower search results
+***write presentation
 
 POTENTIAL ADD-ONS IF TIME PERMITS
 *nearest national park
 *nearest wilderness area
 *nearest airport
 *number of flights per day from nearest airport
+*average daily high temperature
+*highest temp last 12 months
+*lowest temp last 12 months
+*days over 100 degrees
+*days under 30 degrees
+
+
+FUTURE DEVELOPMENTS
+*this would be most effective if it was available as a plugin to real estate listing websites.
+
+
+

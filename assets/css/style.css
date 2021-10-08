@@ -1,5 +1,29 @@
-  /* AQI Classes */
-.low-risk {
+body {
+  color:rgba(52, 41, 110, 1.5);
+  background-color: seashell;
+}
+
+.card {
+  background-color: snow;
+}
+
+
+header {
+  text-align: center;
+  background-image: linear-gradient(to right, rgba(52, 41, 110, 1.5), rgb(52, 41, 110, .6));
+  color: bisque;
+}
+p {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+ul {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+/* AQI Classes */
+ .low-risk {
     background-color: green;
   }
   .medium-risk {
@@ -17,30 +41,61 @@
     background-color: green;
   }
   .medium-commute {
-    color: yellow;
+    background-color: yellow;
   }
   .long-commute {
-    color: orange;
+    background-color: orange;
   }
   .extreme-commute {
-    color: red;
+    background-color: red;
   }
 
+  /* to hide a div */
   .hidden {
     display: none;
   }
 
+  /* SIDEBAR */
+  .btn-container {
 
-  .row {
-    border: hotpink 2px dotted;
   }
 
-  .col {
-    border: greenyellow 2px dotted;
+  .form-btn {
+    background-color: rgba(52, 41, 110, .8);
+    color: bisque;
+    margin: 6px;
+    padding: 8px;
+    width: 44%;
   }
-  
+
+  .form-btn:hover {
+    background-color: rgba(52, 41, 110, .6);
+  }
+
+  .form-btn:active, .form-btn:focus {
+    background-color: rgba(52, 41, 110, .5);
+  }
+
+  .btn-search {
+    background-color: rgba(52, 41, 110, .8);
+    color: bisque;
+    margin: 6px;
+    padding: 8px;
+    width: 100%;
+  }
+
+  .btn-search:hover {
+    background-color: rgba(52, 41, 110, .6);
+  }
+
+  .btn-search:active, .btn-search:focus {
+    background-color: rgba(52, 41, 110, .5);
+  }
+
+  #zipcodeForm {
+    margin-bottom: 24px;
+  }
+
   #search-history {
-      border:indigo 2px solid;
+    justify-content: center;
   }
-
-  
