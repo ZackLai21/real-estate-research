@@ -31,14 +31,14 @@
                         <form id='zipcodeForm'>
                             <h5 class="motto">Find yourself a city to live in.</h5>
                             <label><b style="font-size: x-large;">Zip Code:</b></label>
-                            <input id="zip" type="text">
+                            <input id="zip" type="text"  tabindex="1">
                             <div class="btn-container">
-                                <button type="button" class="form-btn center-align" id="cleanHistory">Clear History</button>
-                                <button type="submit" class="form-btn center-align" id="formButton">Search</button>                            
+                                <button type="button"  tabindex="-1" class="form-btn center-align hide-on-small-only" id="cleanHistory">Clear History</button>
+                                <button type="submit"  tabindex="2" class="form-btn center-align" id="formButton">Search</button>                            
                             </div>
                         </form>
                     </div>
-                    <div class="search-history center-align col" id="search-history"></div>
+                    <div class="search-history center-align col hide-on-small-only" id="search-history"></div>
                 </div>
             </div>
             <div class="col m9"> 
@@ -72,13 +72,13 @@
                                 Carbon Monoxide, Sulfur Dioxide, and Nitrogen Dioxide.">
                                 The air quality index combines measurements of five major pollutants 
                                 and provides a snapshot of how much pollutants are in the air ranging 
-                                on a scale of 0 -500. AQI is scaled as follows:   
+                                on a scale of 0 - 500. AQI is scaled as follows:   
                                 </p>
                                     <ul class="browser-default">
-                                        <li>Low Risk</li>
-                                        <li>Medium Risk</li>
-                                        <li>High Risk</li>
-                                        <li>Extreme Risk / Hazardous</li>
+                                        <li>Low Risk - GREEN</li>
+                                        <li>Medium Risk - YELLOW</li>
+                                        <li>High Risk - ORANGE</li>
+                                        <li>Extreme Risk / Hazardous - RED</li>
                                     </ul>
                                 
                             </div>

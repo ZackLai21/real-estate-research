@@ -237,16 +237,18 @@ function displayButtons() {
 }
 
 function addSearchToHistory(zipcode,county) {
-  var searchHistoryItem = {
-    countyHistory: county,
-    zip: zipcode,
-  };
-  console.log(searchHistory);
-  console.log(searchHistoryItem);
-  searchHistory.unshift(searchHistoryItem);
-  console.log(searchHistory);
-  localStorage.setItem("search-history", JSON.stringify(searchHistory));
-  displayButtons();
+  if (searchHistory.some(e => e.zip === zipcode)){
+    return;
+  } else {
+    var searchHistoryItem = {
+      countyHistory: county,
+      zip: zipcode,
+    };
+      searchHistory.unshift(searchHistoryItem);
+      console.log(searchHistory);
+      localStorage.setItem("search-history", JSON.stringify(searchHistory));
+      displayButtons();
+}
 }
 
 function captureZip(e) {
@@ -272,30 +274,32 @@ function clean(e){
 
 cleanHistory.addEventListener('click',clean)
 
-// //Open  weather api returning historical daily info, goes back a full year
-// function randomCall() {
-//   var apiUrl =
-//     "http://api.openweathermap.org/data/2.5/air_pollution/history?lat=50&lon=50&start=1606400802&end=1606482999&appid=7d95785c4f00ca95a4efd6fc636475f4";
-//   fetch(apiUrl)
-//     .then(function (response) {
-//       if (response.ok) {
-//         response.json().then(function (data) {
-//           if (data.length === 0) {
-//             console.log("no data from AQI");
-//             return;
-//           }
-//    console.log(data); 
-//         });
-//       } else {
-//         alert("Error:" + response.statusText);
-//       }
-//     })
-//     .catch(function (error) {
-//       alert("Unable to connect to Air Now API");
-//     });
-//   }
+//Open  weather api returning historical daily info, goes back a full year
+function randomCall() {
+  var apiUrl =
+    "http://api.openweathermap.org/data/2.5/air_pollution/history?lat=50&lon=50&start=1606400802&end=1606482999&appid=7d95785c4f00ca95a4efd6fc636475f4";
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log(data);
+          if (data.length === 0) {
+            console.log("no data from AQI");
+            return;
+          }
+   console.log(data); 
+        });
+      } else {
+        alert("Error:" + response.statusText);
+      }
+    })
+    .catch(function (error) {
+      alert("Unable to connect to Air Now API");
+    });
+  }
 
-//   randomCall();
+  randomCall();
+
 
 
 function handleSearchClick() {

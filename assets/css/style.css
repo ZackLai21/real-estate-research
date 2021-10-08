@@ -25,6 +25,7 @@ ul {
 /* AQI Classes */
  .low-risk {
     background-color: green;
+    color: bisque;
   }
   .medium-risk {
     color: yellow;
@@ -34,11 +35,13 @@ ul {
   }
   .extreme-risk {
     color: red;
+    color: whitesmoke;
   }
 
   /* Commute Classes */
   .short-commute{
     background-color: green;
+    color: bisque;
   }
   .medium-commute {
     background-color: yellow;
@@ -48,6 +51,7 @@ ul {
   }
   .extreme-commute {
     background-color: red;
+    color: whitesmoke;
   }
 
   /* to hide a div */
@@ -66,6 +70,7 @@ ul {
     margin: 6px;
     padding: 8px;
     width: 44%;
+    border-radius: 4px;
   }
 
   .form-btn:hover {
@@ -82,6 +87,7 @@ ul {
     margin: 6px;
     padding: 8px;
     width: 100%;
+    border-radius: 4px;
   }
 
   .btn-search:hover {
@@ -98,4 +104,14 @@ ul {
 
   #search-history {
     justify-content: center;
+  }
+
+  @media only screen and (max-width: 480px) {
+    header h1 {
+      font-size: 28px;
+    }
+
+    .form-btn {
+      width: 100%;
+    }
   }

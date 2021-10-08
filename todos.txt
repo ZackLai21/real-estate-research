@@ -3,17 +3,26 @@ TODOS
 ** - medium priorty
 *** - high priority
 
+
+
+KNOWN ISSUES:
+***AQI is not working for New York County (maybe will be fixed when swith to open weather API.)
+***Commute data doesn't pull for counties in Louisiana (probably due to them being named  _____ Parish, probably can be fixxed with an if statement)
+
+
 ITEMS RELATED TO AIR QUALITY INDEX
-*get the AQI average
-*get worst AQI in past year
+**get the AQI average (in progress)
+**get worst AQI in past year (in progress)
 
 OTHER POTENTIAL FEATURES TO IMPROVE USER EXPERIENCE
-**add spinner for slower search results
-***write presentation
+*add spinner for slower search results
+
 
 POTENTIAL ADD-ONS IF TIME PERMITS
 *nearest national park
 *nearest wilderness area
+*nearest ski resort
+*nearest beach
 *nearest airport
 *number of flights per day from nearest airport
 *average daily high temperature
