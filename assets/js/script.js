@@ -274,31 +274,31 @@ function clean(e){
 
 cleanHistory.addEventListener('click',clean)
 
-//Open  weather api returning historical daily info, goes back a full year
-function randomCall() {
-  var apiUrl =
-    "http://api.openweathermap.org/data/2.5/air_pollution/history?lat=50&lon=50&start=1606400802&end=1606482999&appid=7d95785c4f00ca95a4efd6fc636475f4";
-  fetch(apiUrl)
-    .then(function (response) {
-      if (response.ok) {
-        response.json().then(function (data) {
-          console.log(data);
-          if (data.length === 0) {
-            console.log("no data from AQI");
-            return;
-          }
-   console.log(data); 
-        });
-      } else {
-        alert("Error:" + response.statusText);
-      }
-    })
-    .catch(function (error) {
-      alert("Unable to connect to Air Now API");
-    });
-  }
+// //Open  weather api returning historical daily info, goes back a full year
+// function randomCall() {
+//   var apiUrl =
+//     "http://api.openweathermap.org/data/2.5/air_pollution/history?lat=50&lon=50&start=1606400802&end=1606482999&appid=7d95785c4f00ca95a4efd6fc636475f4";
+//   fetch(apiUrl)
+//     .then(function (response) {
+//       if (response.ok) {
+//         response.json().then(function (data) {
+//           console.log(data);
+//           if (data.length === 0) {
+//             console.log("no data from AQI");
+//             return;
+//           }
+//    console.log(data); 
+//         });
+//       } else {
+//         alert("Error:" + response.statusText);
+//       }
+//     })
+//     .catch(function (error) {
+//       alert("Unable to connect to Air Now API");
+//     });
+//   }
 
-  randomCall();
+//   randomCall();
 
 
 
