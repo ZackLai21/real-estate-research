@@ -134,6 +134,10 @@ function displayCommuteResults(countyAndState, commute) {
   resultCounty.textContent = countyAndState;
   resultAverageCommute.textContent = commute + " Minutes";
   commuteResultEl.innerHTML = "";
+  commuteCard.classList.remove("short-commute");
+  commuteCard.classList.remove("medium-commute");
+  commuteCard.classList.remove("long-commute");
+  commuteCard.classList.remove("extreme-commute");
   if (commute < 20) {
     commuteCard.classList.add("short-commute");
   } else if (commute >= 20 && commute < 25) {
