@@ -10,23 +10,88 @@
     
 </head>
 <body>
-     <div class="row" id="main-display">
-        <div class="search-history col s4">
-            <div class="col s6">
-                <form id='zipcodeForm'>
-                <h1>Search</h1>
-                    <label><b style="font-size: x-large;">Zip Code:</b></label>
-                    <input id="zip" type="text">
-                    <button id="formButton">Search</button>
-                </form>
-                <div class="search-history col s6" id="search-history"></div>
+    <header id="county-header">
+        <h1>Find A City</h1>
+    </header>
+    <div id="modal1" class="modal">
+        <div class="modal-content">
+          <h4>Oops.. No Results</h4>
+          <p>Please enter a different Zip Code</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat"
+            >OK, I will!</a>
+        </div>
+      </div>
+    <div class="container">
+        <div class="row">
+            <div class="col m3">
+                <div class="col">
+                    <div class="search-form col" id="search-form">
+                        <form id='zipcodeForm'>
+                            <h5 class="motto">Find yourself a city to live in.</h5>
+                            <label><b style="font-size: x-large;">Zip Code:</b></label>
+                            <input id="zip" type="text"  tabindex="1">
+                            <div class="btn-container">
+                                <button type="button"  tabindex="-1" class="form-btn center-align hide-on-small-only" id="cleanHistory">Clear History</button>
+                                <button type="submit"  tabindex="2" class="form-btn center-align" id="formButton">Search</button>                            
+                            </div>
+                        </form>
+                    </div>
+                    <div class="search-history center-align col hide-on-small-only" id="search-history"></div>
+                </div>
+            </div>
+            <div class="col m9"> 
+                <div id="county-header-2"></div>
+                <div class="row m9">
+                    <div class="col m9">
+                        <div class="card" id="commute-result-color">
+                            <div class="card-content">
+                                <span class="card-title">Average Commute To Work in Minutes</span>
+                                <p class="tooltipped" data-position="top" data-tooltip="Based on the daily average over the past calendar year from all respondents that are employed and over the age of 16.">This is based on results from the American Community Survey performed by the US Census Bureau. Results are are scaled as follows: 
+                                    <ul class="browser-default">
+                                        <li>Short (under 20 minutes) - GREEN</li>
+                                        <li>Medium (21-25 minutes) - YELLOW</li>
+                                        <li>Long (26-30 minutes) - ORANGE</li>
+                                        <li>Extreme (Over 30 minutes)- RED</li>
+                                    </ul>
+                                </p>
+                            </div>
+                            <div class="card-action" id="commute-results">
+                                <h3 class="placeholder">_____</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m9">
+                    <div class="col m9">
+                        <div class="card" id="aqi-result-color">
+                            <div class="card-content">
+                                <span class="card-title">Air Quality Index</span>
+                                <p class="tooltipped" data-position="top" data-tooltip="Measured pollutants are: ground-level O-zone, particle pollution (PM-25 and PM-100), 
+                                Carbon Monoxide, Sulfur Dioxide, and Nitrogen Dioxide.">
+                                The air quality index combines measurements of five major pollutants 
+                                and provides a snapshot of how much pollutants are in the air ranging 
+                                on a scale of 0 - 500. AQI is scaled as follows:   
+                                </p>
+                                    <ul class="browser-default">
+                                        <li>Low Risk - GREEN</li>
+                                        <li>Medium Risk - YELLOW</li>
+                                        <li>High Risk - ORANGE</li>
+                                        <li>Extreme Risk / Hazardous - RED</li>
+                                    </ul>
+                                
+                            </div>
+                            <div class="card-action" id="AQI-results">
+                                <h3 class="placeholder">_____</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="commute-results col s6" id="commute-results"></div>
-            <div class="AQI-results col s6" id="AQI-results"></div>
-        </div>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script language="javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyABei7qsaJawM-o0ibN05LmcjU3ge6MUhc"></script>

@@ -1,9 +1,13 @@
 var zipCodeForm = document.querySelector("#zipcodeForm");
+var formButton = document.querySelector("#formButton");
 var searchHistoryContainer = $("#search-history");
-var searchHistory = [];
+var aqiCard = document.querySelector('#aqi-result-color');
+var commuteCard = document.querySelector('#commute-result-color');
+var cleanHistory = document.querySelector("#cleanHistory");
+var countyHeader = document.querySelector("#county-header");
 var county = "Multnomah County";
 var state = "Oregon";
-
+var searchHistory = [];
 
 var states = [
   ["Alabama", "01", "AL"],
@@ -58,6 +62,16 @@ var states = [
   ["Wyoming", "56", "WY"],
 ];
 
+
+searchHistory = localStorage.getItem("search-history");
+  if (searchHistory) {
+    searchHistory = JSON.parse(searchHistory);      
+  } else {
+    searchHistory = [];
+};
+  
+displayButtons();
+
 function getStateCode(state) {
   for (i = 0; i < states.length; i++) {
     if (states[i][2] === state) {
@@ -101,7 +115,7 @@ function searchCensus(countyCode, stateCode) {
   fetch(apiUrl)
     .then(function (response) {
       if (response.ok) {
-        response.json().then(function (data) {
+        return response.json().then(function (data) {
           displayCommuteResults(data[1][0], data[1][1]);
         });
       } else {
@@ -113,17 +127,24 @@ function searchCensus(countyCode, stateCode) {
     });
 }
 
-function displayCommuteResults(commute, countyAndState) {
+function displayCommuteResults(countyAndState, commute) {
   var commuteResultEl = document.querySelector("#commute-results");
-  var resultCounty = document.createElement("h2");
-  var resultAverageCommute = document.createElement("h2");
+  var resultCounty = document.createElement("h1");
+  var resultAverageCommute = document.createElement("h3");
   resultCounty.textContent = countyAndState;
-  resultAverageCommute.textContent = commute;
+  resultAverageCommute.textContent = commute + " Minutes";
   commuteResultEl.innerHTML = "";
   if (commute < 20) {
-    commuteResultEl.classList.add("short-commute")
-  }
-  commuteResultEl.appendChild(resultCounty);
+    commuteCard.classList.add("short-commute");
+  } else if (commute >= 20 && commute < 25) {
+    commuteCard.classList.add("medium-commute");
+  } else if (commute >= 25 && commute < 30) {
+    commuteCard.classList.add("long-commute");
+  } else {
+    commuteCard.classList.add("extreme-commute");
+  };
+  countyHeader.innerHTML = "";
+  countyHeader.appendChild(resultCounty);
   commuteResultEl.appendChild(resultAverageCommute);
 }
 
@@ -133,10 +154,16 @@ function convertZipcode(zipcode) {
   fetch(url).then(function (response) {
     response.json().then(function (data) {
       state = data.State;
+      console.log(data);
       var lowerCaseCounty = data.County.toLowerCase();
       county = lowerCaseCounty.split(' ')
       .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
       .join(' ') + " County";
+      if(county.includes("And")){
+        county=county.replace('And','and');
+      }
+      console.log(zipcode + " " + county)
+      addSearchToHistory(zipcode,county);
       getStateCode(state);
     });
   });
@@ -152,7 +179,9 @@ function searchAQI(zipcode) {
       if (response.ok) {
         response.json().then(function (data) {
           if (data.length === 0) {
-            console.log("no data from AQI");
+            var elems = document.getElementById('modal1');
+            var instance = M.Modal.init(elems);
+            instance.open();
             return;
           }
           localStorage.setItem("AQI", data[0].AQI);
@@ -171,61 +200,55 @@ function searchAQI(zipcode) {
 
 function displayAQI(aqi) {
   var AQIResultEl = document.querySelector("#AQI-results");
-  var AQIEl = document.createElement("h2");
-  var AQICategoryNameEl = document.createElement("h2");
-  var AQICategoryNumberEl = document.createElement("h2");
+  var AQIEl = document.createElement("h3");
   var AQI = aqi.AQI;
   var AQICategoryName = aqi.Category.Name;
   var AQICategoryNumber = aqi.Category.Number;
   if (AQICategoryNumber === 1) {
-    AQIResultEl.classList.add("low-risk");
+    aqiCard.classList.add("low-risk");
   } else if (AQICategoryNumber === 2) {
-    AQIResultEl.classList.add("medium-risk");
+    aqiCard.classList.add("medium-risk");
   } else if (AQICategoryNumber === 3) {
-    AQIResultEl.classList.add("high-risk");
+    aqiCard.classList.add("high-risk");
   } else {
-    AQIResultEl.classList.add("extreme-risk");
+    aqiCard.classList.add("extreme-risk");
   };
-  AQIEl.textContent = AQI;
-  AQICategoryNameEl.textContent = AQICategoryName;
-  AQICategoryNumberEl.textContent = AQICategoryNumber;
+  AQIEl.textContent = AQI + " - " + AQICategoryName;
   AQIResultEl.innerHTML = "";
   AQIResultEl.appendChild(AQIEl);
-  AQIResultEl.appendChild(AQICategoryNameEl);
-  AQIResultEl.appendChild(AQICategoryNumberEl);
-}
-
-function initSearchHistory() {
-  searchHistory = localStorage.getItem("search-history");
-    if (searchHistory) {
-      searchHistory = JSON.parse(searchHistory);
-      console.log(searchHistory);
-      displayButtons();
-    } else {
-      searchHistory = [];
-  }
 }
 
 function displayButtons() {
   searchHistoryContainer.empty();
-  for (var i = searchHistory.length - 1; i >= 0; i--) {
+  if (searchHistory.length > 10) {
+    searchHistory.pop();
+  }
+  for (i = 0; i < searchHistory.length; i++) {
       var button = $("<button>")
       .attr({
         type: "button",
         class: "btn-search",
       })
-      .text(searchHistory[i]);
+      .text(searchHistory[i].countyHistory + "---" + searchHistory[i].zip);
+    
     searchHistoryContainer.append(button);
+
   }
 }
 
-
-
-function addSearchToHistory(query) {
-  searchHistory.push(query);
-  localStorage.setItem("search-history", JSON.stringify(searchHistory));
-  searchHistoryContainer.innerHTML = "";
-  displayButtons();
+function addSearchToHistory(zipcode,county) {
+  if (searchHistory.some(e => e.zip === zipcode)){
+    return;
+  } else {
+    var searchHistoryItem = {
+      countyHistory: county,
+      zip: zipcode,
+    };
+      searchHistory.unshift(searchHistoryItem);
+      console.log(searchHistory);
+      localStorage.setItem("search-history", JSON.stringify(searchHistory));
+      displayButtons();
+}
 }
 
 function captureZip(e) {
@@ -233,10 +256,56 @@ function captureZip(e) {
   var zipCodeEntry = $("#zip").val().trim();
   searchAQI(zipCodeEntry);
   convertZipcode(zipCodeEntry);
-  addSearchToHistory(zipCodeEntry);
 }
 
 zipCodeForm.addEventListener("submit", captureZip);
 
-searchHistoryContainer.innerHTML = "";
-initSearchHistory();
+$(document).ready(function(){
+  $('.tooltipped').tooltip({delay: 50, tooltip: 'some text', html: true});
+});
+
+function clean(e){
+  e.preventDefault();
+  localStorage.clear();
+  searchHistory=[];
+  historyCounty=[];
+  displayButtons();
+}
+
+cleanHistory.addEventListener('click',clean)
+
+//Open  weather api returning historical daily info, goes back a full year
+function randomCall() {
+  var apiUrl =
+    "http://api.openweathermap.org/data/2.5/air_pollution/history?lat=50&lon=50&start=1606400802&end=1606482999&appid=7d95785c4f00ca95a4efd6fc636475f4";
+  fetch(apiUrl)
+    .then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          console.log(data);
+          if (data.length === 0) {
+            console.log("no data from AQI");
+            return;
+          }
+   console.log(data); 
+        });
+      } else {
+        alert("Error:" + response.statusText);
+      }
+    })
+    .catch(function (error) {
+      alert("Unable to connect to Air Now API");
+    });
+  }
+
+  randomCall();
+
+
+
+function handleSearchClick() {
+  var zipcode = this.textContent.split('---')[1];
+  convertZipcode(zipcode);
+  searchAQI(zipcode);
+}
+
+searchHistoryContainer.on("click", ".btn-search",handleSearchClick );
